@@ -602,7 +602,265 @@ The player’s workstation offers detailed simulation control and profile manage
 - Pre-existing staff/customer relationships
 
 ---
-These can be available, but don't HAVE to be used
+
+## 🚀 18. Development Roadmap - AI Implementation Chunks
+
+### Phase 1: Foundation & Core Systems (Weeks 1-2)
+
+**Chunk 1A: Project Setup & Basic Structure**
+- Set up Perchance project architecture
+- Implement basic HTML structure and CSS framework
+- Create core JavaScript modules (main.js, uiManager.js)
+- Set up save/load system foundation
+- Integrate essential Perchance plugins (AI text, image generation)
+
+**Chunk 1B: Game State Management**
+- Design and implement GameData.js structure
+- Create player character creation system
+- Build basic store setup flow
+- Implement time system (day/week progression)
+- Create fundamental UI navigation
+
+**Chunk 1C: Basic NPC System**
+- Implement name generation from curated lists
+- Create archetype system and basic traits
+- Build NPC data structure and storage
+- Develop simple NPC encounter system
+- Set up NPC registry for the work computer
+
+---
+
+### Phase 2: Core Gameplay Loop (Weeks 3-4)
+
+**Chunk 2A: Customer Interaction System**
+- Build conversation interface and dialogue trees
+- Implement basic customer service mechanics
+- Create simple checkout/transaction system
+- Develop relationship tracking foundation
+- Add basic customer satisfaction scoring
+
+**Chunk 2B: Product & Inventory System**
+- Design product data structure and categories
+- Implement basic inventory management
+- Create simple reorder system
+- Build product display and pricing mechanics
+- Add stock level tracking and alerts
+
+**Chunk 2C: Basic Financial System**
+- Implement cash register and transaction logging
+- Create daily/weekly financial reporting
+- Build debt tracking and payment system
+- Add basic expense management (rent, utilities)
+- Set up profit/loss calculations
+
+---
+
+### Phase 3: Work Computer Interface (Weeks 5-6)
+
+**Chunk 3A: Computer UI Framework**
+- Build tabbed interface for work computer
+- Create app launcher and navigation system
+- Implement window management and multitasking
+- Design responsive computer interface styling
+- Add basic computer startup/shutdown flow
+
+**Chunk 3B: NPC Management App**
+- Build detailed NPC profile viewing system
+- Implement relationship level displays and tracking
+- Create NPC bio editing capabilities
+- Add relationship history logging
+- Implement NPC search and filtering
+
+**Chunk 3C: Product Management App**
+- Create inventory overview dashboard
+- Build stock level monitoring and alerts
+- Implement reorder interface with AI product generation
+- Add sales trend analysis and reporting
+- Create product category management
+
+---
+
+### Phase 4: AI Content Generation (Weeks 7-8)
+
+**Chunk 4A: NPC AI Enhancement**
+- Implement background NPC enrichment system
+- Create AI prompt templates for NPC backstories
+- Build personality tag generation system
+- Add AI-generated NPC profile pictures
+- Implement dynamic NPC behavior patterns
+
+**Chunk 4B: Product AI Generation**
+- Create AI product name and description generation
+- Implement product image generation system
+- Build category-based product prompt templates
+- Add seasonal and trending product generation
+- Create product rarity and pricing algorithms
+
+**Chunk 4C: Dialogue & Event AI**
+- Implement real-time AI dialogue generation
+- Create context-aware conversation prompts
+- Build event and news generation system
+- Add AI-generated customer complaints/compliments
+- Implement dynamic scenario creation
+
+---
+
+### Phase 5: Staff & Automation (Weeks 9-10)
+
+**Chunk 5A: Staff Hiring System**
+- Build staff recruitment interface
+- Implement job role definitions and requirements
+- Create staff application and interview process
+- Add background check and reference systems
+- Build staff onboarding workflow
+
+**Chunk 5B: Staff Management & Scheduling**
+- Create shift scheduling interface
+- Implement staff performance tracking
+- Build productivity and morale systems
+- Add staff drama and conflict resolution
+- Create staff benefits and incentive programs
+
+**Chunk 5C: Automation Systems**
+- Implement automated customer service (cashier)
+- Build automated cleaning and maintenance
+- Create automated inventory restocking
+- Add automated security monitoring
+- Implement AI assistant manager decision-making
+
+---
+
+### Phase 6: Advanced Features (Weeks 11-12)
+
+**Chunk 6A: Social Media & Bank Apps**
+- Build in-game social media interface
+- Implement NPC-generated posts and interactions
+- Create bank account management system
+- Add investment portfolio tracking
+- Build credit and loan management features
+
+**Chunk 6B: Security & Crime System**
+- Implement theft detection and prevention
+- Create security camera monitoring interface
+- Build incident reporting and resolution
+- Add alarm system and emergency responses
+- Implement debt collection encounter system
+
+**Chunk 6C: Relationship & Adult Content**
+- Build romance progression tracking
+- Implement adult content gating and warnings
+- Create private interaction scenarios
+- Add relationship consequence systems
+- Build reputation and scandal mechanics
+
+---
+
+### Phase 7: Polish & Enhancement (Weeks 13-14)
+
+**Chunk 7A: Advanced Economics**
+- Implement supply/demand fluctuations
+- Create seasonal and event-driven pricing
+- Build competition and market analysis
+- Add investment mini-game functionality
+- Create economic trend prediction systems
+
+**Chunk 7B: Random Events & Challenges**
+- Build health inspection and regulatory systems
+- Implement random crisis event generation
+- Create customer problem resolution scenarios
+- Add emergency situation responses
+- Build community event integration
+
+**Chunk 7C: Progression & Achievements**
+- Implement tier-based progression unlocks
+- Create achievement tracking and rewards
+- Build store upgrade and expansion systems
+- Add multiple location management
+- Create endgame content and challenges
+
+---
+
+### Phase 8: Final Integration & Testing (Weeks 15-16)
+
+**Chunk 8A: System Integration**
+- Connect all subsystems seamlessly
+- Implement cross-system data sharing
+- Create unified save/load functionality
+- Add comprehensive error handling
+- Build system performance optimization
+
+**Chunk 8B: User Experience Polish**
+- Implement tutorial and onboarding system
+- Create help documentation and tooltips
+- Add accessibility features and options
+- Build mobile responsiveness optimizations
+- Create user preference and settings management
+
+**Chunk 8C: Content Balancing & QA**
+- Balance economic systems and progression curves
+- Fine-tune AI content generation parameters
+- Test all interaction combinations
+- Optimize performance and load times
+- Create comprehensive testing scenarios
+
+---
+
+## 📝 19. AI Prompt Strategy Guidelines
+
+### For Each Chunk Development:
+
+**Context Setup Prompts:**
+```
+"You are developing [Chunk Name] for a store management simulation game. 
+Here's the full design document: [attach design doc]
+Focus specifically on: [chunk requirements]
+Use these technologies: HTML5, JavaScript, CSS3, Perchance plugins
+Maintain compatibility with: [previous chunk outputs]"
+```
+
+**Implementation Prompts:**
+```
+"Implement [specific feature] with these requirements:
+- Functional: [list core functionality]
+- Technical: [list technical constraints]
+- UI/UX: [describe interface needs]
+- Integration: [how it connects to other systems]
+- Data: [what data structures are needed]"
+```
+
+**Testing & Validation Prompts:**
+```
+"Create comprehensive tests for [chunk name] including:
+- Unit tests for core functions
+- Integration tests with existing systems
+- User experience testing scenarios
+- Performance benchmarks
+- Edge case handling"
+```
+
+---
+
+## 🎯 20. Chunk Dependencies & Critical Path
+
+**Critical Path Chunks** (Must be completed in order):
+1. **1A → 1B → 1C**: Foundation systems
+2. **2A → 2B → 2C**: Core gameplay
+3. **3A → 3B/3C**: Computer interface
+4. **4A → 4B → 4C**: AI content generation
+
+**Parallel Development Opportunities:**
+- Chunks 3B and 3C can be developed simultaneously
+- Chunks 4A, 4B, 4C can be parallelized after 3A
+- Chunks 6A, 6B, 6C can be developed in any order
+- Phase 7 chunks can be tackled based on priority
+
+**Integration Points** (Require coordination):
+- Phase 3 → Phase 4: Computer apps need AI content
+- Phase 4 → Phase 5: Staff system needs AI-generated personalities
+- Phase 5 → Phase 6: Automation affects all advanced features
+- Phase 6 → Phase 7: Advanced features inform economic balancing
+
+---
     generateImage = {import:text-to-image-plugin}
     generatorStats = {import:generator-stats-plugin}
     c0 = {import:unsafe-settings-1}

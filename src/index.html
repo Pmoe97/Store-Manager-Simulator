@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Manager Simulator</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/themes/default.css">
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/modals.css">
+    <link rel="stylesheet" href="styles/components/cards.css">
+    <link rel="stylesheet" href="styles/components/forms.css">
+    <link rel="stylesheet" href="styles/screens/store.css">
+    <link rel="stylesheet" href="styles/screens/computer.css">
+    <link rel="stylesheet" href="styles/screens/counter.css">
+    <link rel="stylesheet" href="styles/screens/conversation.css">
+    <link rel="stylesheet" href="styles/apps/appWindow.css">
+    <link rel="stylesheet" href="styles/apps/customerRelationsApp.css">
+    <link rel="stylesheet" href="src/css/staffHiring.css">
+        <!-- Phase 5B: Staff Management CSS -->
+    <link rel="stylesheet" href="styles/staffManagement.css">
+    
+    <!-- Phase 5C: Automation CSS -->
+    <link rel="stylesheet" href="styles/automation.css">
+    
+    <!-- Perchance Plugin Imports -->
+    <script>
+        // AI and utility plugins
+        const generateImage = {import: 'text-to-image-plugin'};
+        const generateText = {import: 'ai-text-plugin'};
+        const ai = {import: 'ai-text-plugin'};
+        const remember = {import: 'unsafe-rememberchange'};
+        const kv = {import: 'kv-plugin'};
+        
+        // UI and interface plugins
+        const date = {import: 'date-plugin'};
+        const favicon = {import: 'favicon-plugin'};
+        const iframe = {import: 'iframe-plugin'};
+        const fullscreenButton = {import: 'fullscreen-button-plugin'};
+        const backgroundImage = {import: 'background-image-plugin'};
+        const createMediaGallery = {import: 'create-media-gallery-plugin'};
+        
+        // Content and interaction plugins
+        const speak = {import: 'text-to-speech-plugin'};
+        const literal = {import: 'literal-plugin'};
+        const combineEmojis = {import: 'combine-emojis-plugin'};
+        const commentsPlugin = {import: 'comments-plugin'};
+        const tabbedCommentsPlugin = {import: 'tabbed-comments-plugin-v1'};
+        
+        // Settings and configuration
+        const c0 = {import: 'unsafe-settings-1'};
+        const c1 = {import: 'unsafe-settings-1'};
+        const generatorStats = {import: 'generator-stats-plugin'};
+        const url = {import: 'url-params-plugin'};
+        
+        // Custom imports
+        const image = {import: 'ue91rctukj'};
+        const Kiera = {import: 'yv49wuj5d6'};
+    </script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen">
+        <div class="loading-content">
+            <h1>Store Manager Simulator</h1>
+            <div class="loading-spinner"></div>
+            <p>Initializing your store...</p>
+        </div>
+    </div>
+
+    <!-- Game Setup Screen -->
+    <div id="setup-screen" class="screen hidden">
+        <div class="setup-container">
+            <h1>🏪 Welcome to Store Manager Simulator</h1>
+            <div id="setup-content">
+                <!-- Welcome Phase -->
+                <div id="welcomePhase" class="setup-phase">
+                    <h2>Start Your Business Empire</h2>
+                    <p>Build and manage your own store, hire staff, serve customers, and grow your business empire!</p>
+                    
+                    <div class="setup-buttons">
+                        <button id="newGameButton" class="setup-button">🆕 Start New Game</button>
+                        <button id="loadGameButton" class="setup-button secondary">📁 Load Game</button>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <label style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <input type="checkbox" id="adultContentToggle" style="transform: scale(1.2);">
+                            <span>Enable Adult Content (18+)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Character Phase -->
+                <div id="characterPhase" class="setup-phase hidden">
+                    <h2>Create Your Character</h2>
+                    <p>Customize your store manager</p>
+                    <div id="characterForm">
+                        <!-- Character creation will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Store Phase -->
+                <div id="storePhase" class="setup-phase hidden">
+                    <h2>Setup Your Store</h2>
+                    <p>Configure your business</p>
+                    <div id="storeForm">
+                        <!-- Store setup will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Complete Phase -->
+                <div id="completePhase" class="setup-phase hidden">
+                    <h2>Ready to Start!</h2>
+                    <p>Your store is ready to open for business!</p>
+                    <div class="setup-buttons">
+                        <button id="gameStartButton" class="setup-button">🚀 Start Playing!</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="setup-navigation" style="margin-top: 30px;">
+                <button id="setupPrevButton" class="setup-button secondary" style="display: none;">← Previous</button>
+                <button id="setupNextButton" class="setup-button" style="display: none;">Next →</button>
+                <button id="setupSkipButton" class="setup-button secondary" style="display: none;">Skip</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Interface -->
+    <div id="game-interface" class="screen hidden">
+        <!-- Store View -->
+        <div id="store-view" class="view active">
+            <div class="store-header">
+                <div class="store-info">
+                    <h2 id="store-name">Your Store</h2>
+                    <div class="store-stats">
+                        <span id="current-cash">$0</span>
+                        <span id="current-time">Day 1 - 8:00 AM</span>
+                    </div>
+                </div>
+                <div class="store-actions">
+                    <button id="computer-btn" class="action-btn">💻 Computer</button>
+                    <button id="pause-btn" class="action-btn">⏸️ Pause</button>
+                </div>
+            </div>
+            
+            <div class="store-main">
+                <div class="store-floor">
+                    <div id="customer-area" class="customer-area">
+                        <!-- Customers will appear here -->
+                    </div>
+                    <div id="counter-area" class="counter-area">
+                        <button id="checkout-btn" class="checkout-btn">Checkout Counter</button>
+                    </div>
+                </div>
+                
+                <div class="store-sidebar">
+                    <div class="inventory-quick">
+                        <h3>Quick Inventory</h3>
+                        <div id="inventory-list">
+                            <!-- Quick inventory items -->
+                        </div>
+                    </div>
+                    
+                    <div class="daily-goals">
+                        <h3>Daily Goals</h3>
+                        <div id="goals-list">
+                            <!-- Daily goals -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Computer Interface -->
+        <div id="computer-view" class="view">
+            <div class="computer-screen">
+                <div class="computer-header">
+                    <div class="window-controls">
+                        <button id="close-computer">✕</button>
+                    </div>
+                    <div class="computer-title">Store Management System</div>
+                </div>
+                <div class="computer-desktop" id="computer-desktop">
+                    <!-- Apps and windows will be created here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Conversation Interface -->
+        <div id="conversation-view" class="view">
+            <div class="conversation-container">
+                <div class="customer-info">
+                    <div id="customer-avatar" class="customer-avatar"></div>
+                    <div class="customer-details">
+                        <h3 id="customer-name">Customer</h3>
+                        <p id="customer-mood">Neutral</p>
+                    </div>
+                </div>
+                
+                <div class="conversation-content">
+                    <div id="dialogue-history" class="dialogue-history">
+                        <!-- Conversation history -->
+                    </div>
+                    
+                    <div class="dialogue-options">
+                        <div id="dialogue-choices" class="dialogue-choices">
+                            <!-- Response options -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="conversation-actions">
+                    <button id="end-conversation" class="action-btn">End Conversation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification System -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Modal Container -->
+    <div id="modal-container" class="modal-container"></div>
+
+    <!-- Core JavaScript Files -->
+    <script src="scripts/core/constants.js"></script>
+    <script src="scripts/core/eventBus.js"></script>
+    <script src="scripts/core/gameState.js"></script>
+    
+    <!-- System Scripts -->
+    <script src="scripts/systems/aiHooks.js"></script>
+    <script src="scripts/systems/timeSystem.js"></script>
+    <script src="scripts/systems/npcSystem.js"></script>
+    <script src="scripts/systems/productSystem.js"></script>
+    <script src="scripts/systems/financeSystem.js"></script>
+    <script src="scripts/systems/relationshipSystem.js"></script>
+    <script src="scripts/systems/conversationSystem.js"></script>
+    <script src="scripts/systems/checkoutSystem.js"></script>
+    
+    <!-- UI Scripts -->
+    <script src="scripts/ui/uiManager.js"></script>
+    <script src="scripts/ui/components/modal.js"></script>
+    <script src="scripts/ui/components/notification.js"></script>
+    <script src="scripts/ui/components/dialogue.js"></script>
+    <script src="scripts/ui/components/tooltip.js"></script>
+    <script src="scripts/ui/screens/mainStore.js"></script>
+    <script src="scripts/ui/screens/setupScreen.js"></script>
+    <script src="scripts/ui/screens/pauseMenu.js"></script>
+    
+    <!-- Workstation Scripts -->
+    <script src="scripts/workstation/components/appWindow.js"></script>
+    <script src="scripts/workstation/components/appToolbar.js"></script>
+    <script src="src/scripts/systems/staffHiringSystem.js"></script>
+    <script src="src/scripts/interfaces/staffHiringInterface.js"></script>
+    <!-- Phase 5B: Staff Management Scripts -->
+    <script src="src/scripts/systems/staffManagementSystem.js"></script>
+    <script src="src/scripts/interfaces/staffManagementInterface.js"></script>
+    
+    <!-- Phase 5C: Automation Scripts -->
+    <script src="systems/automationSystem.js"></script>
+    <script src="systems/aiAssistantManager.js"></script>
+    <script src="systems/automatedCashierSystem.js"></script>
+    <script src="systems/automatedInventorySystem.js"></script>
+    <script src="interfaces/automationInterface.js"></script>
+    
+    <script src="scripts/workstation/workstationManager.js"></script>
+    <script src="scripts/workstation/apps/customerRelationsApp.js"></script>
+    <script src="scripts/workstation/apps/npcApp.js"></script>
+    <script src="scripts/workstation/apps/productApp.js"></script>
+    <script src="scripts/workstation/apps/socialApp.js"></script>
+    <script src="scripts/workstation/apps/bankApp.js"></script>
+    <script src="scripts/workstation/apps/staffApp.js"></script>
+    <script src="scripts/workstation/apps/settingsApp.js"></script>
+    
+    <!-- Data Files -->
+    <script src="data/gameData.js"></script>
+    
+    <!-- Save System -->
+    <script src="scripts/saveSystem.js"></script>
+    
+    <!-- Game Initialization -->
+    <script src="scripts/gameInitialization.js"></script>
+    
+    <!-- Main Application -->
+    <script src="scripts/main.js"></script>
+</body>
+</html>

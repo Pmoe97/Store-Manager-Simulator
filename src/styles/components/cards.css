@@ -1,0 +1,267 @@
+/* Card Components */
+
+.card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all var(--transition-fast);
+}
+
+.card:hover {
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: var(--font-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-secondary);
+}
+
+/* Card Variants */
+.card-elevated {
+    box-shadow: var(--shadow-md);
+}
+
+.card-elevated:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.card-outlined {
+    border: 2px solid var(--border-dark);
+    box-shadow: none;
+}
+
+.card-flush {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* Interactive Cards */
+.card-clickable {
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.card-clickable:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.card-clickable:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Card Grid */
+.card-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Product Card */
+.product-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: var(--bg-tertiary);
+}
+
+.product-card .product-info {
+    padding: 1rem;
+}
+
+.product-card .product-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.product-card .product-price {
+    font-size: var(--font-lg);
+    font-weight: 700;
+    color: var(--success);
+}
+
+.product-card .product-stock {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--bg-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius);
+    font-size: var(--font-sm);
+    font-weight: 500;
+}
+
+.product-card .product-stock.low {
+    background: var(--warning);
+    color: white;
+}
+
+.product-card .product-stock.out {
+    background: var(--error);
+    color: white;
+}
+
+/* Customer Card */
+.customer-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.customer-card .customer-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.customer-card .customer-info {
+    flex: 1;
+}
+
+.customer-card .customer-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.customer-card .customer-mood {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+}
+
+.customer-card .relationship-level {
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius);
+    font-size: var(--font-sm);
+    font-weight: 500;
+}
+
+/* NPC Card */
+.npc-card {
+    transition: all var(--transition-fast);
+}
+
+.npc-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.npc-card .npc-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.npc-card .npc-name {
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.npc-card .npc-archetype {
+    text-align: center;
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.npc-card .npc-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-sm);
+}
+
+/* Stat Card */
+.stat-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+.stat-card .stat-value {
+    font-size: var(--font-3xl);
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+}
+
+.stat-card .stat-label {
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.stat-card .stat-change {
+    margin-top: 0.5rem;
+    font-size: var(--font-sm);
+    font-weight: 500;
+}
+
+.stat-card .stat-change.positive {
+    color: var(--success);
+}
+
+.stat-card .stat-change.negative {
+    color: var(--error);
+}
+
+.stat-card .stat-change::before {
+    content: '';
+    margin-right: 0.25rem;
+}
+
+.stat-card .stat-change.positive::before {
+    content: '↗';
+}
+
+.stat-card .stat-change.negative::before {
+    content: '↘';
+}

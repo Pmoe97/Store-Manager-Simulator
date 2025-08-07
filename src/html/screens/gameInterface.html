@@ -1,0 +1,90 @@
+<!-- Main Game Interface -->
+<div id="game-interface" class="screen hidden">
+    <!-- Store View -->
+    <div id="store-view" class="view active">
+        <div class="store-header">
+            <div class="store-info">
+                <h2 id="store-name">Your Store</h2>
+                <div class="store-stats">
+                    <span id="current-cash">$0</span>
+                    <span id="current-time">Day 1 - 8:00 AM</span>
+                </div>
+            </div>
+            <div class="store-actions">
+                <button id="computer-btn" class="action-btn">💻 Computer</button>
+                <button id="pause-btn" class="action-btn">⏸️ Pause</button>
+            </div>
+        </div>
+        
+        <div class="store-main">
+            <div class="store-floor">
+                <div id="customer-area" class="customer-area">
+                    <!-- Customers will appear here -->
+                </div>
+                <div id="counter-area" class="counter-area">
+                    <button id="checkout-btn" class="checkout-btn">Checkout Counter</button>
+                </div>
+            </div>
+            
+            <div class="store-sidebar">
+                <div class="inventory-quick">
+                    <h3>Quick Inventory</h3>
+                    <div id="inventory-list">
+                        <!-- Quick inventory items -->
+                    </div>
+                </div>
+                
+                <div class="daily-goals">
+                    <h3>Daily Goals</h3>
+                    <div id="goals-list">
+                        <!-- Daily goals -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Work Computer Interface -->
+    <div id="computer-view" class="view">
+        <div class="work-computer">
+            <div class="computer-screen off" id="computer-screen">
+                <!-- Power off state -->
+                <div class="power-button-container">
+                    <button class="power-button" id="power-button">
+                        <span class="power-icon">⚡</span>
+                        <span>Power On</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conversation Interface -->
+    <div id="conversation-view" class="view">
+        <div class="conversation-container">
+            <div class="customer-info">
+                <div id="customer-avatar" class="customer-avatar"></div>
+                <div class="customer-details">
+                    <h3 id="customer-name">Customer</h3>
+                    <p id="customer-mood">Neutral</p>
+                </div>
+            </div>
+            
+            <div class="conversation-content">
+                <div id="dialogue-history" class="dialogue-history">
+                    <!-- Conversation history -->
+                </div>
+                
+                <div class="dialogue-options">
+                    <div id="dialogue-choices" class="dialogue-choices">
+                        <!-- Response options -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="conversation-actions">
+                <button id="end-conversation" class="action-btn">End Conversation</button>
+            </div>
+        </div>
+    </div>
+</div>

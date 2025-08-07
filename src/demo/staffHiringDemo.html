@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Hiring System Demo - Phase 5A</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/staffHiring.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f8fafc;
+        }
+        
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .demo-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        
+        .demo-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .demo-controls {
+            background: white;
+            padding: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .demo-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .demo-btn.secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .demo-btn.secondary:hover {
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .demo-container {
+            height: calc(100vh - 140px);
+            overflow: hidden;
+        }
+        
+        .demo-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            z-index: 1000;
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            font-size: 1.2em;
+            color: #6b7280;
+        }
+        
+        .loading::before {
+            content: "⏳";
+            margin-right: 10px;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>👔 Staff Hiring System Demo</h1>
+        <p>Phase 5A: Recruitment & Hiring Management - Live Preview</p>
+    </div>
+    
+    <div class="demo-controls">
+        <button class="demo-btn" onclick="demoPostJob('cashier')">
+            💰 Post Cashier Job
+        </button>
+        <button class="demo-btn" onclick="demoPostJob('stocker')">
+            📦 Post Stocker Job
+        </button>
+        <button class="demo-btn" onclick="demoPostJob('security')">
+            🛡️ Post Security Job
+        </button>
+        <button class="demo-btn secondary" onclick="generateDemoApplications()">
+            📄 Generate Demo Applications
+        </button>
+        <button class="demo-btn secondary" onclick="location.reload()">
+            🔄 Reset Demo
+        </button>
+    </div>
+    
+    <div class="demo-container">
+        <div id="staff-hiring-demo">
+            <div class="loading">
+                Loading Staff Hiring System...
+            </div>
+        </div>
+    </div>
+    
+    <div class="demo-status" id="demoStatus">
+        Phase 5A Ready - Captain! 🚀
+    </div>
+
+    <!-- Staff Hiring System Scripts -->
+    <script src="../scripts/systems/staffHiringSystem.js"></script>
+    <script src="../scripts/interfaces/staffHiringInterface.js"></script>
+    <script src="staffHiringDemo.js"></script>
+    
+    <script>
+        // Demo status updates
+        function updateStatus(message) {
+            const statusEl = document.getElementById('demoStatus');
+            if (statusEl) {
+                statusEl.textContent = message;
+                console.log('📢 Demo Status:', message);
+            }
+        }
+        
+        // Override console.log to show in status
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.join(' ');
+            if (message.includes('✅') || message.includes('📄') || message.includes('🚀')) {
+                updateStatus(message);
+            }
+        };
+        
+        // Global demo functions
+        window.generateDemoApplications = generateDemoApplications;
+        
+        // Welcome message
+        setTimeout(() => {
+            updateStatus('Staff Hiring System Loaded! Try posting a job. 💼');
+        }, 2000);
+        
+        // Auto-generate some demo data after 3 seconds
+        setTimeout(() => {
+            if (typeof generateDemoApplications === 'function') {
+                generateDemoApplications();
+                updateStatus('Demo applications generated! Check Applications tab. 📋');
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

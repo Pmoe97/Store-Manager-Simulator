@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management - Store Manager Simulator</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/ui/productDisplay.css">
+</head>
+<body>
+    <div class="inventory-management">
+        <!-- Header Section -->
+        <header class="inventory-header">
+            <div class="header-content">
+                <h1>📦 Inventory Management</h1>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <span class="stat-label">Total Products</span>
+                        <span class="stat-value" id="total-products">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Total Value</span>
+                        <span class="stat-value" id="total-value">$0.00</span>
+                    </div>
+                    <div class="stat-card low-stock">
+                        <span class="stat-label">Low Stock Items</span>
+                        <span class="stat-value" id="low-stock-count">0</span>
+                    </div>
+                    <div class="stat-card urgent">
+                        <span class="stat-label">Out of Stock</span>
+                        <span class="stat-value" id="out-of-stock-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="inventory-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="overview">Overview</button>
+                <button class="nav-tab" data-tab="products">Products</button>
+                <button class="nav-tab" data-tab="alerts">Stock Alerts</button>
+                <button class="nav-tab" data-tab="orders">Reorders</button>
+                <button class="nav-tab" data-tab="suppliers">Suppliers</button>
+                <button class="nav-tab" data-tab="reports">Reports</button>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="stock-check-btn">
+                    <span class="icon">🔍</span>
+                    Run Stock Check
+                </button>
+                <button class="btn btn-secondary" id="export-btn">
+                    <span class="icon">📊</span>
+                    Export Report
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="inventory-content">
+
+            <!-- Overview Tab -->
+            <section id="overview-tab" class="tab-content active">
+                <div class="overview-grid">
+                    
+                    <!-- Stock Status Overview -->
+                    <div class="overview-card">
+                        <h3>📋 Stock Status</h3>
+                        <div class="stock-status-chart">
+                            <div class="status-item">
+                                <div class="status-indicator in-stock"></div>
+                                <span class="status-label">In Stock</span>
+                                <span class="status-count" id="in-stock-overview">0</span>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-indicator low-stock"></div>
+                                <span class="status-label">Low Stock</span>
+                                <span class="status-count" id="low-stock-overview">0</span>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-indicator out-stock"></div>
+                                <span class="status-label">Out of Stock</span>
+                                <span class="status-count" id="out-stock-overview">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="overview-card">
+                        <h3>📈 Recent Activity</h3>
+                        <div class="activity-list" id="recent-activity">
+                            <!-- Activity items will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Top Products by Value -->
+                    <div class="overview-card">
+                        <h3>💰 Top Inventory by Value</h3>
+                        <div class="top-products-list" id="top-products">
+                            <!-- Top products will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Category Breakdown -->
+                    <div class="overview-card">
+                        <h3>📊 Category Breakdown</h3>
+                        <div class="category-breakdown" id="category-breakdown">
+                            <!-- Category data will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Pending Orders -->
+                    <div class="overview-card">
+                        <h3>🚛 Pending Orders</h3>
+                        <div class="pending-orders-list" id="pending-orders">
+                            <!-- Pending orders will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="overview-card">
+                        <h3>⚡ Quick Actions</h3>
+                        <div class="quick-actions-grid">
+                            <button class="quick-action-btn" id="bulk-restock">
+                                <span class="icon">📦</span>
+                                <span class="label">Bulk Restock</span>
+                            </button>
+                            <button class="quick-action-btn" id="create-order">
+                                <span class="icon">🛒</span>
+                                <span class="label">Create Order</span>
+                            </button>
+                            <button class="quick-action-btn" id="adjust-prices">
+                                <span class="icon">💰</span>
+                                <span class="label">Adjust Prices</span>
+                            </button>
+                            <button class="quick-action-btn" id="export-inventory">
+                                <span class="icon">📄</span>
+                                <span class="label">Export Data</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Products Tab -->
+            <section id="products-tab" class="tab-content">
+                <div id="product-display-container">
+                    <!-- Product display component will be mounted here -->
+                </div>
+            </section>
+
+            <!-- Stock Alerts Tab -->
+            <section id="alerts-tab" class="tab-content">
+                <div class="alerts-container">
+                    <div class="alerts-header">
+                        <h3>🚨 Stock Alerts</h3>
+                        <div class="alert-filters">
+                            <select id="alert-type-filter">
+                                <option value="">All Types</option>
+                                <option value="out_of_stock">Out of Stock</option>
+                                <option value="critical_low">Critical Low</option>
+                                <option value="low_stock">Low Stock</option>
+                                <option value="overstocked">Overstocked</option>
+                            </select>
+                            <select id="alert-priority-filter">
+                                <option value="">All Priorities</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                            <button class="btn btn-secondary" id="clear-resolved">Clear Resolved</button>
+                        </div>
+                    </div>
+                    <div class="alerts-list" id="alerts-list">
+                        <!-- Alerts will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reorders Tab -->
+            <section id="orders-tab" class="tab-content">
+                <div class="orders-container">
+                    <div class="orders-header">
+                        <h3>📋 Reorder Management</h3>
+                        <div class="order-actions">
+                            <button class="btn btn-primary" id="create-manual-order">
+                                <span class="icon">➕</span>
+                                Create Manual Order
+                            </button>
+                            <button class="btn btn-secondary" id="approve-all-orders">
+                                <span class="icon">✅</span>
+                                Approve All
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="order-status-tabs">
+                        <button class="status-tab active" data-status="pending">Pending</button>
+                        <button class="status-tab" data-status="approved">Approved</button>
+                        <button class="status-tab" data-status="delivered">Delivered</button>
+                    </div>
+
+                    <div class="orders-list" id="orders-list">
+                        <!-- Orders will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Suppliers Tab -->
+            <section id="suppliers-tab" class="tab-content">
+                <div class="suppliers-container">
+                    <div class="suppliers-header">
+                        <h3>🏢 Supplier Management</h3>
+                        <button class="btn btn-primary" id="add-supplier">
+                            <span class="icon">➕</span>
+                            Add Supplier
+                        </button>
+                    </div>
+                    <div class="suppliers-grid" id="suppliers-grid">
+                        <!-- Suppliers will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Tab -->
+            <section id="reports-tab" class="tab-content">
+                <div class="reports-container">
+                    <div class="reports-header">
+                        <h3>📊 Inventory Reports</h3>
+                        <div class="report-filters">
+                            <select id="report-type">
+                                <option value="summary">Inventory Summary</option>
+                                <option value="turnover">Turnover Analysis</option>
+                                <option value="valuation">Valuation Report</option>
+                                <option value="movement">Stock Movement</option>
+                            </select>
+                            <input type="date" id="report-date-from" />
+                            <input type="date" id="report-date-to" />
+                            <button class="btn btn-primary" id="generate-report">Generate Report</button>
+                        </div>
+                    </div>
+                    <div class="report-content" id="report-content">
+                        <!-- Report will be generated here -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Modals -->
+        
+        <!-- Bulk Restock Modal -->
+        <div id="bulk-restock-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📦 Bulk Restock</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="restock-options">
+                        <label>
+                            <input type="radio" name="restock-type" value="category" checked>
+                            Restock by Category
+                        </label>
+                        <label>
+                            <input type="radio" name="restock-type" value="low-stock">
+                            Restock Low Stock Items
+                        </label>
+                        <label>
+                            <input type="radio" name="restock-type" value="custom">
+                            Custom Selection
+                        </label>
+                    </div>
+                    
+                    <div class="restock-details" id="restock-details">
+                        <!-- Dynamic content based on selection -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancel-restock">Cancel</button>
+                    <button class="btn btn-primary" id="confirm-restock">Confirm Restock</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Order Modal -->
+        <div id="create-order-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🛒 Create Manual Order</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="order-form">
+                        <div class="form-group">
+                            <label>Supplier</label>
+                            <select id="order-supplier">
+                                <!-- Suppliers will be populated -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select id="order-priority">
+                                <option value="normal">Normal</option>
+                                <option value="high">High</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Products</label>
+                            <div class="product-selector" id="product-selector">
+                                <!-- Product selection interface -->
+                            </div>
+                        </div>
+                        <div class="order-summary" id="order-summary">
+                            <!-- Order summary will be shown here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancel-order">Cancel</button>
+                    <button class="btn btn-primary" id="submit-order">Submit Order</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supplier Details Modal -->
+        <div id="supplier-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="supplier-modal-title">Supplier Details</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="supplier-details" id="supplier-details">
+                        <!-- Supplier information will be shown here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="close-supplier">Close</button>
+                    <button class="btn btn-primary" id="edit-supplier">Edit Supplier</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        // Initialize inventory management interface
+        import { InventoryManagementInterface } from '../scripts/ui/inventoryManagement.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const inventoryInterface = new InventoryManagementInterface();
+            inventoryInterface.initialize();
+        });
+    </script>
+</body>
+</html>

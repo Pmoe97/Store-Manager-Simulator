@@ -1,0 +1,152 @@
+/* Default Theme - Store Manager Simulator */
+
+:root {
+    /* Primary Colors */
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --primary-dark: #1d4ed8;
+    --secondary: #10b981;
+    --secondary-light: #34d399;
+    --secondary-dark: #059669;
+
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    
+    /* Text Colors */
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --text-white: #ffffff;
+
+    /* Border Colors */
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    --border-dark: #cbd5e1;
+
+    /* Status Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    /* Store Specific Colors */
+    --store-floor: #f5f5dc;
+    --store-wall: #d4d4aa;
+    --counter-color: #8b4513;
+    --cash-green: #16a34a;
+    --debt-red: #dc2626;
+
+    /* Computer Interface Colors */
+    --computer-bg: #1e293b;
+    --computer-screen: #0f172a;
+    --computer-border: #334155;
+    --computer-text: #e2e8f0;
+    --window-bg: #ffffff;
+    --window-header: #f1f5f9;
+    --window-border: #d1d5db;
+
+    /* Relationship Colors */
+    --relationship-stranger: #9ca3af;
+    --relationship-regular: #3b82f6;
+    --relationship-friend: #10b981;
+    --relationship-vip: #f59e0b;
+    --romance-interested: #ec4899;
+    --romance-dating: #db2777;
+    --romance-partner: #be185d;
+
+    /* Staff Colors */
+    --staff-reliable: #10b981;
+    --staff-average: #f59e0b;
+    --staff-problematic: #ef4444;
+
+    /* Product Category Colors */
+    --category-food: #16a34a;
+    --category-personal: #3b82f6;
+    --category-electronics: #6366f1;
+    --category-clothing: #ec4899;
+    --category-home: #8b5cf6;
+    --category-books: #f97316;
+    --category-toys: #eab308;
+    --category-automotive: #64748b;
+    --category-health: #06b6d4;
+    --category-adult: #dc2626;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+
+    /* Typography */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+
+    /* Transitions */
+    --transition: all 0.2s ease;
+    --transition-fast: all 0.1s ease;
+    --transition-slow: all 0.3s ease;
+
+    /* Z-Index Layers */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+    --z-toast: 800;
+}
+
+/* Dark Theme Support (Future) */
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    
+    --border: #334155;
+    --border-light: #475569;
+    --border-dark: #1e293b;
+}
+
+/* High Contrast Theme Support (Accessibility) */
+[data-theme="high-contrast"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #000000;
+    
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    
+    --border: #000000;
+    --primary: #0000ff;
+    --secondary: #008000;
+    --error: #ff0000;
+    --warning: #ff8000;
+}

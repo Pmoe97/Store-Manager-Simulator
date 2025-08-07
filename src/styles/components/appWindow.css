@@ -1,0 +1,583 @@
+/* Application Window Styles */
+
+.app-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    min-width: 400px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: windowOpen 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.app-window.closing {
+    animation: windowClose 0.2s ease-in-out forwards;
+}
+
+@keyframes windowClose {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+/* Window Header */
+.window-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: move;
+    user-select: none;
+}
+
+.window-header.dragging {
+    cursor: grabbing;
+}
+
+.window-title {
+    font-size: var(--font-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.window-title .icon {
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+.window-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.window-control {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    transition: all var(--transition-fast);
+}
+
+.window-control.minimize {
+    background: var(--warning);
+    color: white;
+}
+
+.window-control.maximize {
+    background: var(--success);
+    color: white;
+}
+
+.window-control.close {
+    background: var(--error);
+    color: white;
+}
+
+.window-control:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.window-control:active {
+    transform: scale(0.95);
+}
+
+/* Window Content */
+.window-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    min-height: 200px;
+}
+
+.window-content.scrollable {
+    max-height: 60vh;
+}
+
+/* Window Footer */
+.window-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* Specific Window Types */
+
+/* Settings Window */
+.settings-window {
+    width: 600px;
+}
+
+.settings-window .window-content {
+    padding: 0;
+}
+
+.settings-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.settings-tab {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-size: var(--font-base);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.settings-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: var(--bg-primary);
+}
+
+.settings-tab:hover:not(.active) {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}
+
+.settings-content {
+    padding: 1.5rem;
+}
+
+.settings-section {
+    margin-bottom: 2rem;
+}
+
+.settings-section h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: var(--font-lg);
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.settings-row:last-child {
+    border-bottom: none;
+}
+
+.settings-label {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.settings-label h4 {
+    margin: 0 0 0.25rem 0;
+    color: var(--text-primary);
+    font-size: var(--font-base);
+}
+
+.settings-label p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+}
+
+.settings-control {
+    flex-shrink: 0;
+}
+
+/* Character Creation Window */
+.character-creation-window {
+    width: 700px;
+}
+
+.character-form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.character-preview {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.character-avatar-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border: 4px solid var(--border);
+}
+
+.character-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-display {
+    background: var(--bg-primary);
+    padding: 1rem;
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.stat-display .label {
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.stat-display .value {
+    font-size: var(--font-xl);
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Inventory Window */
+.inventory-window {
+    width: 800px;
+    height: 600px;
+}
+
+.inventory-window .window-content {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.inventory-header {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inventory-stats {
+    display: flex;
+    gap: 2rem;
+    font-size: var(--font-sm);
+}
+
+.inventory-grid {
+    flex: 1;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.5rem;
+    overflow-y: auto;
+}
+
+.inventory-slot {
+    aspect-ratio: 1;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.inventory-slot:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.inventory-slot.occupied {
+    background: var(--bg-primary);
+    border-color: var(--primary);
+}
+
+.inventory-slot .item-icon {
+    font-size: 1.5rem;
+}
+
+.inventory-slot .item-quantity {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: var(--primary);
+    color: white;
+    font-size: 0.625rem;
+    padding: 0.125rem 0.25rem;
+    border-radius: var(--radius);
+    min-width: 16px;
+    text-align: center;
+}
+
+/* Relationship Window */
+.relationship-window {
+    width: 600px;
+}
+
+.relationship-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.relationship-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.relationship-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.relationship-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    border: 2px solid var(--border);
+}
+
+.relationship-info {
+    flex: 1;
+}
+
+.relationship-info h4 {
+    margin: 0 0 0.25rem 0;
+    color: var(--text-primary);
+}
+
+.relationship-info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+}
+
+.relationship-status {
+    text-align: right;
+}
+
+.relationship-level {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.relationship-level.stranger {
+    color: var(--relationship-stranger);
+}
+
+.relationship-level.regular {
+    color: var(--relationship-regular);
+}
+
+.relationship-level.friend {
+    color: var(--relationship-friend);
+}
+
+.relationship-level.vip {
+    color: var(--relationship-vip);
+}
+
+.relationship-level.romance {
+    color: var(--relationship-romance);
+}
+
+/* Window Resize Handles */
+.window-resize-handle {
+    position: absolute;
+    background: transparent;
+}
+
+.window-resize-handle.corner-se {
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    cursor: se-resize;
+}
+
+.window-resize-handle.edge-right {
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    cursor: e-resize;
+}
+
+.window-resize-handle.edge-bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    cursor: s-resize;
+}
+
+/* Window States */
+.app-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    transform: none !important;
+    border-radius: 0;
+}
+
+.app-window.minimized {
+    display: none;
+}
+
+/* Modal Overlay for Windows */
+.window-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: overlayFadeIn 0.2s ease-out;
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-window {
+        width: 95vw !important;
+        height: 90vh !important;
+        min-width: unset;
+    }
+
+    .window-header {
+        padding: 0.75rem;
+    }
+
+    .window-content {
+        padding: 1rem;
+    }
+
+    .window-footer {
+        padding: 0.75rem;
+        flex-direction: column;
+    }
+
+    .window-footer .btn {
+        width: 100%;
+    }
+
+    .settings-window,
+    .character-creation-window,
+    .inventory-window,
+    .relationship-window {
+        width: 95vw;
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    }
+
+    .character-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .window-controls {
+        gap: 0.25rem;
+    }
+
+    .window-control {
+        width: 20px;
+        height: 20px;
+        font-size: 0.625rem;
+    }
+
+    .settings-tabs {
+        overflow-x: auto;
+    }
+
+    .settings-tab {
+        padding: 0.75rem 1rem;
+        flex-shrink: 0;
+    }
+
+    .settings-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .relationship-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .relationship-status {
+        text-align: center;
+    }
+}

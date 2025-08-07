@@ -124,45 +124,124 @@ The player’s workstation offers detailed simulation control and profile manage
 
 ## 📂 6. File Structure (Updated)
 
+**IMPORTANT: INDEX.HTML IS A COMPILED DOCUMENT**
+- All HTML, CSS, and JavaScript files are developed separately
+- A custom build pipeline compiles everything into a single `index.html` for Perchance.org
+- NO MANUAL CODING IN INDEX.HTML - it's the final compiled output only
+
 ```plaintext
 /src/
-├── index.html
+├── html/                        // HTML template files (compiled into index.html)
+│   ├── base.html               // Main HTML structure template
+│   ├── screens/
+│   │   ├── loadingScreen.html
+│   │   ├── setupScreen.html
+│   │   ├── gameInterface.html
+│   │   ├── storeView.html
+│   │   ├── computerView.html
+│   │   └── conversationView.html
+│   └── components/
+│       ├── notifications.html
+│       ├── modals.html
+│       ├── customerCard.html
+│       ├── productCard.html
+│       └── dialogueBox.html
 ├── scripts/
 │   ├── main.js
-│   ├── aiHooks.js              // Handles Perchance plugin calls
-│   ├── productSystem.js
-│   ├── timeSystem.js
-│   ├── npcSystem.js            // Handles NPC gen, names, archetypes, profile building
-│   ├── conversationSystem.js   // Manages how interactions work
-│   ├── checkoutSystem.js       // Handles the point-of-sale system
-│   ├── workstationSystem/
-│   │   ├── index.js            // Main workstation logic
-│   │   ├── npcApp.js
-│   │   ├── productApp.js
-│   │   ├── socialApp.js
-│   │   ├── bankApp.js
-│   │   └── staffApp.js
-│   ├── uiManager.js            // General UI scripts
-│   ├── gameInitialization.js   // Handles game setup/start process
-│   └── saveSystem.js           // Save/Load/Import/Export
+│   ├── core/
+│   │   ├── gameState.js         // Central game state management
+│   │   ├── eventBus.js          // Event system for module communication
+│   │   └── constants.js         // Game constants and enums
+│   ├── systems/
+│   │   ├── aiHooks.js           // Handles Perchance plugin calls
+│   │   ├── productSystem.js     
+│   │   ├── timeSystem.js
+│   │   ├── npcSystem.js         // Handles NPC gen, names, archetypes, profile building
+│   │   ├── conversationSystem.js // Manages how interactions work
+│   │   ├── checkoutSystem.js    // Handles the point-of-sale system
+│   │   ├── financeSystem.js     // Handles all money, debt, investments
+│   │   ├── relationshipSystem.js // Manages relationship levels and romance
+│   │   ├── eventSystem.js       // Random events, scenarios, challenges
+│   │   ├── securitySystem.js    // Crime, theft, security measures
+│   │   ├── staffSystem.js       // Staff hiring, scheduling, management
+│   │   ├── reputationSystem.js  // Store reputation and social dynamics
+│   │   └── adultContentSystem.js // Handles 18+ content gating and generation
+│   ├── workstation/
+│   │   ├── workstationManager.js // Main workstation logic
+│   │   ├── apps/
+│   │   │   ├── npcApp.js
+│   │   │   ├── productApp.js
+│   │   │   ├── socialApp.js
+│   │   │   ├── bankApp.js
+│   │   │   ├── staffApp.js
+│   │   │   └── settingsApp.js  // Player preferences and options
+│   │   └── components/
+│   │       ├── appWindow.js     // Reusable window component
+│   │       └── appToolbar.js    // Reusable toolbar component
+│   ├── ui/
+│   │   ├── uiManager.js         // General UI controller
+│   │   ├── components/
+│   │   │   ├── modal.js         // Reusable modal system
+│   │   │   ├── notification.js  // Toast/notification system
+│   │   │   ├── dialogue.js      // Dialogue box component
+│   │   │   └── tooltip.js       // Help tooltip system
+│   │   └── screens/
+│   │       ├── mainStore.js     // Main store view
+│   │       ├── setupScreen.js   // Game setup flow
+│   │       └── pauseMenu.js     // Pause/save menu
+│   ├── gameInitialization.js    // Handles game setup/start process
+│   └── saveSystem.js            // Save/Load/Import/Export
 ├── styles/
 │   ├── main.css
-│   ├── computer.css
-│   ├── counter.css
-│   ├── conversation.css
-│   ├── calendar.css
+│   ├── components/
+│   │   ├── buttons.css
+│   │   ├── modals.css
+│   │   ├── cards.css
+│   │   └── forms.css
+│   ├── screens/
+│   │   ├── store.css
+│   │   ├── computer.css
+│   │   ├── counter.css
+│   │   └── conversation.css
 │   ├── apps/
 │   │   ├── socialApp.css
 │   │   ├── bankApp.css
-│   │   └── staffApp.css
+│   │   ├── staffApp.css
+│   │   └── appWindow.css
+│   └── themes/
+│       ├── default.css
+│       └── dark.css
 ├── data/
-│   ├── GameData.js             // Defines save state format
-│   ├── nameLists.json
-│   ├── archetypes.json
-│   └── promptTemplates.json
+│   ├── gameData.js              // Defines save state format
+│   ├── config/
+│   │   ├── balance.json         // Economic balance settings
+│   │   ├── progression.json     // Tier unlocks and requirements
+│   │   └── difficulty.json      // Difficulty modifiers
+│   ├── content/
+│   │   ├── nameLists.json
+│   │   ├── archetypes.json
+│   │   ├── products.json        // Base product templates
+│   │   ├── events.json          // Random event templates
+│   │   └── dialogues.json       // Dialogue templates
+│   └── prompts/
+│       ├── npcPrompts.json      // AI generation prompts for NPCs
+│       ├── productPrompts.json  // AI generation prompts for products
+│       ├── eventPrompts.json    // AI generation prompts for events
+│       └── adultPrompts.json    // AI generation prompts for 18+ content
 ├── assets/
-│   └── generated/              // AI-generated images
+│   ├── generated/               // AI-generated images
+│   ├── ui/                      // UI icons and graphics
+│   └── sounds/                  // Sound effects (future)
+├── tests/                       // Test files for each module
+├── docs/                        // Development documentation
+├── build/                       // Build pipeline and compilation tools
+│   ├── compiler.js             // Main compilation script
+│   ├── templates/              // Build templates
+│   └── config.json             // Build configuration
+├── dist/                       // Compiled output directory
+│   └── index.html              // FINAL COMPILED GAME (for Perchance.org)
 ├── gulpfile.js
+└── package.json
 ```
 
 ---
@@ -604,6 +683,13 @@ The player’s workstation offers detailed simulation control and profile manage
 ---
 
 ## 🚀 18. Development Roadmap - AI Implementation Chunks
+
+**CRITICAL DEVELOPMENT NOTE:**
+- **ALL DEVELOPMENT** happens in separate files under `/src/`
+- **NO MANUAL EDITING** of `index.html` - it's compiled automatically
+- Use `npm run build` to compile all files into `dist/index.html`
+- Use `npm run watch` during development for auto-compilation
+- Only `dist/index.html` gets uploaded to Perchance.org
 
 ### Phase 1: Foundation & Core Systems (Weeks 1-2)
 

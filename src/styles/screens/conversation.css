@@ -1,0 +1,410 @@
+/* Conversation Interface Styles */
+
+.conversation-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+}
+
+.customer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+}
+
+.customer-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border: 3px solid var(--border);
+}
+
+.customer-details h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-size: var(--font-xl);
+}
+
+.customer-details p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+}
+
+.conversation-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dialogue-history {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dialogue-message {
+    max-width: 70%;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    position: relative;
+    line-height: 1.5;
+}
+
+.dialogue-message.player {
+    align-self: flex-end;
+    background: var(--primary);
+    color: white;
+    border-bottom-right-radius: var(--radius);
+}
+
+.dialogue-message.npc {
+    align-self: flex-start;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-bottom-left-radius: var(--radius);
+}
+
+.dialogue-message .message-time {
+    font-size: var(--font-sm);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+.dialogue-message .message-mood {
+    font-size: var(--font-sm);
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.dialogue-options {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 1rem;
+}
+
+.dialogue-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dialogue-choice {
+    padding: 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+    font-size: var(--font-base);
+    line-height: 1.4;
+}
+
+.dialogue-choice:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: white;
+    transform: translateX(5px);
+}
+
+.dialogue-choice:active {
+    transform: translateX(0);
+}
+
+.dialogue-choice.romantic {
+    border-left: 4px solid var(--relationship-romance);
+}
+
+.dialogue-choice.business {
+    border-left: 4px solid var(--primary);
+}
+
+.dialogue-choice.friendly {
+    border-left: 4px solid var(--relationship-friend);
+}
+
+.dialogue-choice.aggressive {
+    border-left: 4px solid var(--error);
+}
+
+.dialogue-choice .choice-type {
+    font-size: var(--font-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.dialogue-choice.romantic .choice-type {
+    color: var(--relationship-romance);
+}
+
+.dialogue-choice.business .choice-type {
+    color: var(--primary);
+}
+
+.dialogue-choice.friendly .choice-type {
+    color: var(--relationship-friend);
+}
+
+.dialogue-choice.aggressive .choice-type {
+    color: var(--error);
+}
+
+.conversation-actions {
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conversation-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: var(--font-sm);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.stat-item .icon {
+    font-size: 1rem;
+}
+
+.stat-item .value {
+    font-weight: 600;
+}
+
+.relationship-meter {
+    width: 100px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-left: 0.5rem;
+}
+
+.relationship-meter .fill {
+    height: 100%;
+    background: var(--relationship-regular);
+    transition: width var(--transition), background-color var(--transition);
+}
+
+.relationship-meter .fill.stranger {
+    background: var(--relationship-stranger);
+}
+
+.relationship-meter .fill.regular {
+    background: var(--relationship-regular);
+}
+
+.relationship-meter .fill.friend {
+    background: var(--relationship-friend);
+}
+
+.relationship-meter .fill.vip {
+    background: var(--relationship-vip);
+}
+
+.relationship-meter .fill.romance {
+    background: var(--relationship-romance);
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    align-self: flex-start;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border-bottom-left-radius: var(--radius);
+    max-width: 70%;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes typing {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Mood Indicators */
+.mood-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius);
+    font-size: var(--font-sm);
+    font-weight: 500;
+}
+
+.mood-indicator.happy {
+    background: rgba(5, 150, 105, 0.1);
+    color: var(--success);
+}
+
+.mood-indicator.neutral {
+    background: rgba(100, 116, 139, 0.1);
+    color: var(--text-secondary);
+}
+
+.mood-indicator.annoyed {
+    background: rgba(217, 119, 6, 0.1);
+    color: var(--warning);
+}
+
+.mood-indicator.angry {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--error);
+}
+
+.mood-indicator.flirty {
+    background: rgba(236, 72, 153, 0.1);
+    color: var(--relationship-romance);
+}
+
+/* Conversation History */
+.conversation-log {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 200px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.5rem;
+    font-size: var(--font-sm);
+    z-index: 10;
+    box-shadow: var(--shadow-md);
+}
+
+.conversation-log h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-sm);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+}
+
+.log-item {
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .customer-info {
+        flex-direction: column;
+        text-align: center;
+        padding: 0.75rem;
+    }
+
+    .customer-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .dialogue-message {
+        max-width: 85%;
+        padding: 0.75rem;
+    }
+
+    .dialogue-choices {
+        max-height: 150px;
+    }
+
+    .dialogue-choice {
+        padding: 0.75rem;
+    }
+
+    .conversation-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .conversation-stats {
+        justify-content: center;
+    }
+
+    .conversation-log {
+        position: static;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dialogue-history {
+        padding: 0.5rem;
+    }
+
+    .dialogue-message {
+        max-width: 95%;
+        padding: 0.5rem;
+    }
+
+    .dialogue-options {
+        padding: 0.5rem;
+    }
+
+    .dialogue-choice {
+        padding: 0.5rem;
+        font-size: var(--font-sm);
+    }
+
+    .conversation-actions {
+        padding: 0.5rem;
+    }
+}

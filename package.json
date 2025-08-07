@@ -1,0 +1,21 @@
+{
+  "name": "store-manager-simulator",
+  "version": "1.0.0",
+  "description": "A fully AI-generated, sandbox-style store management simulation game for Perchance",
+  "main": "src/scripts/main.js",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node build.js && npx http-server dist -p 3000 -o",
+    "dev": "node build.js --watch",
+    "clean": "rm -rf dist/*"
+  },
+  "keywords": ["game", "simulation", "ai", "perchance", "store-management"],
+  "author": "Store Manager Simulator Team",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "fs-extra": "^11.1.1",
+    "http-server": "^14.1.1",
+    "chokidar": "^3.5.3"
+  }
+}

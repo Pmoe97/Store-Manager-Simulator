@@ -1,0 +1,172 @@
+<!-- Setup Screen Template -->
+<div id="setupContainer" class="screen-container setup-screen" style="display: none;">
+    <!-- Progress Bar -->
+    <div class="setup-progress-container">
+        <div class="setup-progress-bar">
+            <div id="setupProgress" class="setup-progress-fill" style="width: 25%;" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="setup-progress-text">
+            <span id="setupProgressText">Getting Started</span>
+        </div>
+    </div>
+
+    <!-- Setup Content -->
+    <div id="setupContent" class="setup-content">
+        
+        <!-- Welcome Phase -->
+        <div id="welcomePhase" class="setup-phase welcome-phase">
+            <div class="welcome-header">
+                <h1>Welcome to Store Manager Simulator</h1>
+                <p class="welcome-subtitle">Build your retail empire from the ground up</p>
+            </div>
+            
+            <div class="welcome-options">
+                <div class="game-option-card">
+                    <h3>New Game</h3>
+                    <p>Start fresh with a new character and store</p>
+                    <button id="newGameButton" class="btn btn-primary btn-large">Start New Game</button>
+                </div>
+                
+                <div class="game-option-card">
+                    <h3>Load Game</h3>
+                    <p>Continue from a previous save</p>
+                    <button id="loadGameButton" class="btn btn-secondary btn-large">Load Game</button>
+                </div>
+            </div>
+            
+            <div class="welcome-settings">
+                <h3>Game Settings</h3>
+                
+                <div class="setting-row">
+                    <label for="difficultySelect">Difficulty</label>
+                    <select id="difficultySelect" class="form-select">
+                        <option value="easy">Easy - More cash, less debt</option>
+                        <option value="normal" selected>Normal - Balanced experience</option>
+                        <option value="hard">Hard - More challenging</option>
+                    </select>
+                </div>
+                
+                <div class="setting-row">
+                    <label for="adultContentToggle" class="checkbox-label">
+                        <input type="checkbox" id="adultContentToggle">
+                        <span class="checkbox-custom"></span>
+                        Enable Adult Content (18+)
+                    </label>
+                    <p class="setting-description">Allows romantic relationships and mature themes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Character Creation Phase -->
+        <div id="characterPhase" class="setup-phase character-phase" style="display: none;">
+            <div class="phase-header">
+                <h2>Create Your Character</h2>
+                <p>Design the person who will manage your store</p>
+            </div>
+            
+            <!-- Character Step Indicator -->
+            <div id="characterSteps" class="step-indicator-container">
+                <div class="step-indicator active" data-step="basic">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Basic Info</div>
+                </div>
+                <div class="step-indicator" data-step="appearance">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Appearance</div>
+                </div>
+                <div class="step-indicator" data-step="personality">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Personality</div>
+                </div>
+                <div class="step-indicator" data-step="review">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Review</div>
+                </div>
+            </div>
+            
+            <div class="character-creation-container">
+                <!-- Character Preview -->
+                <div id="characterPreview" class="character-preview">
+                    <div class="character-avatar-container">
+                        <div id="characterAvatar" class="character-avatar-large">
+                            <span class="avatar-placeholder">👤</span>
+                        </div>
+                        <button id="generateAvatarButton" class="btn btn-secondary btn-small">Generate Avatar</button>
+                    </div>
+                    
+                    <div class="character-summary">
+                        <h3 id="characterName">Character Name</h3>
+                        <p id="characterDetails">Details will appear here</p>
+                        <div id="characterTraits" class="character-traits"></div>
+                        <div id="characterStats" class="character-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Charisma</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-stat="charisma" style="width: 50%"></div>
+                                </div>
+                                <span class="stat-value" data-stat="charisma">50</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Business</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-stat="business" style="width: 50%"></div>
+                                </div>
+                                <span class="stat-value" data-stat="business">50</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Energy</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-stat="energy" style="width: 100%"></div>
+                                </div>
+                                <span class="stat-value" data-stat="energy">100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Character Form -->
+                <div id="characterForm" class="character-form">
+                    <!-- Form content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Store Setup Phase -->
+        <div id="storePhase" class="setup-phase store-phase" style="display: none;">
+            <div class="phase-header">
+                <h2>Set Up Your Store</h2>
+                <p>Configure your retail business</p>
+            </div>
+            
+            <!-- Store Setup Content -->
+            <div class="store-setup-container">
+                <div id="storeForm" class="store-form">
+                    <!-- Store form content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion Phase -->
+        <div id="completePhase" class="setup-phase complete-phase" style="display: none;">
+            <div class="phase-header">
+                <h2>Setup Complete!</h2>
+                <p>Your character and store are ready. Let's begin your retail journey!</p>
+            </div>
+            
+            <div id="setupSummary" class="setup-summary">
+                <!-- Summary content will be populated by JavaScript -->
+            </div>
+            
+            <div class="completion-actions">
+                <button id="gameStartButton" class="btn btn-primary btn-large">Start Game!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setup Navigation -->
+    <div class="setup-navigation">
+        <button id="setupPrevButton" class="btn btn-secondary" style="display: none;">Previous</button>
+        <button id="setupSkipButton" class="btn btn-outline" style="display: none;">Skip Step</button>
+        <button id="setupNextButton" class="btn btn-primary">Next</button>
+    </div>
+</div>
